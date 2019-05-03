@@ -1,6 +1,7 @@
 from scipy.special import expit
 import numpy as np
 import random
+from  utils.helper import randomly
 
 class SimpleMoralityGene:
     def __init__(self, a, b):
@@ -51,7 +52,7 @@ class MonkeySpecies:
         self.n_interactions = np.round(self.interaction_rate * size)
 
     def interact(self):
-        for monkey in random.shuffle(self.monkeys):
+        for monkey in randomly(self.monkeys):
             other_monkeys = random.choices(monkey, k=self.n_interactions)
             for other_monkey in other_monkeys:
                 monkey.interact(other_monkey)
