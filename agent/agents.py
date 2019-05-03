@@ -17,7 +17,7 @@ class Monkey:
                  resource: float = None,
                  id=-1):
         if resource is None:
-            self.resource = np.random.normal(1, 0.3)
+            self.resource = np.random.normal(1, 0.1)
         self.morality_gene = morality_gene
         self.well_being = np.sqrt(self.resource)
         self.productivity = productivity,
