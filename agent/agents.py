@@ -72,4 +72,7 @@ class MonkeySpecies:
     def get_species_well_being_per_capital(self):
         return np.mean([monkey.well_being for monkey in self.monkeys])
 
+    def get_all_well_being(self):
+        return [monkey.well_being for monkey in self.monkeys]
+
 
