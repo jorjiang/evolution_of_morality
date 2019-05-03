@@ -52,13 +52,14 @@ class MonkeySpecies:
             self.monkeys.append(Monkey(morality_gene,
                                        id = i))
         self.interaction_rate = interaction_rate
-        self.n_interactions = int(np.round(self.interaction_rate * size))
+        self.max_n_interactions = int(np.round(self.interaction_rate * size))
         self.id = id
 
     def interact(self):
         for monkey in randomly(self.monkeys):
             all_other_monkeys = [m for m in self.monkeys if m.id != monkey.id]
-            other_monkeys = random.choices(all_other_monkeys, k=self.n_interactions)
+            n_interactions = min(self.max_n_interactions, len(all_other_monkeys))
+            other_monkeys = random.choices(all_other_monkeys, k=n_interactions)
             for other_monkey in other_monkeys:
                 monkey.interact(other_monkey)
 
