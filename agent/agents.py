@@ -52,7 +52,7 @@ class MonkeySpecies:
             self.monkeys.append(Monkey(morality_gene,
                                        id = i))
         self.interaction_rate = interaction_rate
-        self.n_interactions = np.round(self.interaction_rate * size)
+        self.n_interactions = int(np.round(self.interaction_rate * size))
         self.id = id
 
     def interact(self):
