@@ -14,7 +14,7 @@ class Monkey:
     def __init__(self, morality_gene: SimpleMoralityGene,
                  productivity = 1.0,
                  luck = 1.0,
-                 resource: float = 1.0,
+                 resource: float = np.random.normal(1, 0.5),
                  id=-1):
         self.morality_gene = morality_gene
         self.resource = resource
