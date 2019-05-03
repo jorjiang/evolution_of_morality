@@ -39,7 +39,7 @@ class Monkey:
         self.resource += np.max(exchanged_resource)
         self.well_being = np.sqrt(self.resource)
 
-        other.resource += exchanged_resource
+        other.resource -= exchanged_resource
         other.well_being = np.sqrt(other.resource)
 
 class MonkeySpecies:
