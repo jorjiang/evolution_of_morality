@@ -14,10 +14,11 @@ class Monkey:
     def __init__(self, morality_gene: SimpleMoralityGene,
                  productivity = 1.0,
                  luck = 1.0,
-                 resource: float = np.random.normal(1, 0.5),
+                 resource: float = None,
                  id=-1):
+        if resource is None:
+            self.resource = np.random.normal(1, 0.3)
         self.morality_gene = morality_gene
-        self.resource = resource
         self.well_being = np.sqrt(self.resource)
         self.productivity = productivity,
         self.luck = luck
