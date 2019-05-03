@@ -57,8 +57,8 @@ class MonkeySpecies:
 
     def interact(self):
         for monkey in randomly(self.monkeys):
-            all_other_monkeys =
-            other_monkeys = random.choices(self.monkeys, k=self.n_interactions)
+            all_other_monkeys = [m for m in self.monkeys if m.id != monkey.id]
+            other_monkeys = random.choices(all_other_monkeys, k=self.n_interactions)
             for other_monkey in other_monkeys:
                 monkey.interact(other_monkey)
 
