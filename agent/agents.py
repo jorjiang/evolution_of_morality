@@ -28,8 +28,8 @@ class Monkey:
         pass
 
     def interact(self, other):
-        resource_difference = self.resource - other.resource
-        exchanged_resource = self.morality_gene.a * resource_difference + \
+        # resource_difference = self.resource - other.resource
+        exchanged_resource = self.morality_gene.a * other.well_being + \
                              self.morality_gene.b
 
         if exchanged_resource > other.resource:
