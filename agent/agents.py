@@ -1,7 +1,9 @@
-from scipy.special import expit
-import numpy as np
 import random
-from  utils.helper import randomly
+
+import numpy as np
+
+from utils.helper import randomly
+
 
 class SimpleMoralityGene:
     def __init__(self, a, b):
@@ -11,21 +13,22 @@ class SimpleMoralityGene:
 
 class Monkey:
     max_exchange = 1
+
     def __init__(self, morality_gene: SimpleMoralityGene,
-                 productivity = 1.0,
-                 luck = 1.0,
+                 productivity: float = 0.1,
+                 luck=1.0,
                  resource: float = None,
                  id=-1):
         if resource is None:
             self.resource = np.random.normal(1, 0.1)
         self.morality_gene = morality_gene
         self.well_being = np.sqrt(self.resource)
-        self.productivity = productivity,
+        self.productivity = productivity
         self.luck = luck
         self.id = id
 
-    def produce(self, ):
-        pass
+    def work(self):
+        self.resource *= 1.0 + self.productivity
 
     def interact(self, other):
         # resource_difference = self.resource - other.resource
@@ -43,18 +46,23 @@ class Monkey:
         other.resource -= exchanged_resource
         other.well_being = np.sqrt(other.resource)
 
+
 class MonkeySpecies:
     def __init__(self, morality_gene: SimpleMoralityGene,
                  size: int,
                  id: int = -1,
-                 interaction_rate = 0.1):
+                 interaction_rate=0.1):
         self.monkeys = []
         for i in range(size):
             self.monkeys.append(Monkey(morality_gene,
-                                       id = i))
+                                       id=i))
         self.interaction_rate = interaction_rate
         self.max_n_interactions = int(np.round(self.interaction_rate * size))
         self.id = id
+
+    def work(self):
+        for monkey in self.monkeys:
+            monkey.work()
 
     def interact(self):
         for monkey in randomly(self.monkeys):
@@ -74,5 +82,3 @@ class MonkeySpecies:
 
     def get_all_well_being(self):
         return [monkey.well_being for monkey in self.monkeys]
-
-
