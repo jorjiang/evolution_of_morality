@@ -52,6 +52,7 @@ class MonkeySpecies:
                  size: int,
                  id: int = -1,
                  interaction_rate=0.1):
+        self.morality_gene = morality_gene
         self.monkeys = []
         for i in range(size):
             self.monkeys.append(Monkey(morality_gene,
